@@ -1,10 +1,26 @@
 import { TextField } from "@material-ui/core";
 import Link from "next/link";
 import { WillDeleteFilesRequest } from "vscode-languageserver-protocol";
+import { useState } from "react";
+
+
+
+
 const LoginMain = () => {
 
-  const handleOn =(e)=>{
-    const email = e.target.value
+
+
+  const [input,setInput] =useState([]);
+
+  const handleOn= (e) => {
+    setInput((input) => ({
+      ...input,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleOnSubmit =()=> {
+    console.log(input)
   };
   return (
     <>
@@ -33,7 +49,7 @@ const LoginMain = () => {
                 type="text"
                 name="email"
                 autoComplete="current-password"
-                onClick={handleOn}
+                onChange={handleOn}
               />
             </h1>
             <h1 className="mt-8 mx-8 flex justify-center">
@@ -47,13 +63,13 @@ const LoginMain = () => {
                 type="password"
                 name="password"
                 autoComplete="current-password"
-                onClick={handleOn}
+                onChange={handleOn}
               />
             </h1>
           </div>
          <Link href={"/forgotPassword"}><h1 className="text-white text-sm ml-28 mt-4 md:ml-36 lg:ml-60 xl:pl-32 2xl:flex justify-center 2xl:mr-64">Forgot password ?</h1></Link>
           <div>
-            <h1 className="mt-24 flex justify-center"><button className="px-12 py-4 rounded-lg bg-rose-200 font-bold 2xl: flex justify-center">Login</button></h1>
+            <h1 className="mt-24 flex justify-center"><button className="px-12 py-4 rounded-lg bg-rose-200 font-bold 2xl: flex justify-center" onClick={handleOnSubmit}>Login</button></h1>
           </div>
         </div>
       </div>
