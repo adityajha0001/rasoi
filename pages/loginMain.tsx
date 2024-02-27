@@ -11,16 +11,19 @@ const LoginMain = () => {
 
 
   const [input,setInput] =useState([]);
+  const [alldata,setAllData] = useState([]);
 
-  const handleOn= (e) => {
+  const handleOn= (e: { target: { name: any; value: any; }; }) => {
     setInput((input) => ({
       ...input,
       [e.target.name]: e.target.value,
     }));
   };
 
-  const handleOnSubmit =()=> {
+  const handleOnSubmit =(e: { preventDefault: () => void; })=> {
+    e.preventDefault();
     console.log(input)
+     setAllData([...alldata,input])
   };
   return (
     <>
